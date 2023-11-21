@@ -6,6 +6,7 @@ import '../css/main.css';
 
 const RollDice = () => {
   const [diceArray, setDiceArray] = useState([]);
+  const [rollAnimation, setRollAnimation] = useState(false);
 
   const handleRollDiceClick = () => {
     const newDiceArray = [];
@@ -16,14 +17,20 @@ const RollDice = () => {
       x++;
     }
     setDiceArray(newDiceArray);
-    console.log(newDiceArray);
+    setRollAnimation(true);
+    
+    setTimeout(() => {
+      setRollAnimation(false);
+    }, 1000); // Adjust the duration to match the animation duration in CSS
   };
 
   return (
     <div>
         <div>
-            <Die rollResults={diceArray} />
-            <button onClick={() => handleRollDiceClick()}>Roll Dice</button>
+            <button className='roll-dice-button' onClick={() => handleRollDiceClick()}>Roll Dice</button>
+            <div className={`die-component-container ${rollAnimation ? 'shake' : ''}`}>
+              <Die rollResults={diceArray} />
+            </div>
         </div>
     </div>
   );

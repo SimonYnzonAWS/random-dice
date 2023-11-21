@@ -4,7 +4,7 @@ import RollDice from "./components/RollDice";
 
 function App() {
 
-  const [randomNum, setRandomNum] = useState(false);
+  const [randomNum, setRandomNum] = useState(0);
 
   const handleNumButtonClick = () => {
     const randomValue = Math.floor(Math.random() * 500) + 1;
@@ -13,9 +13,15 @@ function App() {
 
   return (
     <div className="App">
-      <p className='random-num'>{randomNum}</p>
-      <button onClick={() => handleNumButtonClick()}>Generate Random Number</button>
-      <RollDice/>
+      <div className='main-container'>
+        <div className='roll-dice-container'>
+          <RollDice/>
+        </div>
+        <div className='random-num-container'>
+          <button className='random-num-button' onClick={() => handleNumButtonClick()}>Generate Random Number</button>
+          <p className='random-num'>{randomNum}</p>
+        </div>
+      </div>
     </div>
   );
 }
